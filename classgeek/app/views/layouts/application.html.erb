@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    
+  <head>
+    <title>Classgeek</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+    
+
+  <body>
+      <div class="container-fluid jumbotron mx-5 mt-5 field d-flex flex-column align-items-center py-3" style="height:100vh">
+      <header>
+          
+    
+    
+      
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    <%=link_to "Classgeek", "#", class:"navbar-brand pe-3" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%=link_to "Home", root_path, class:"navbar-brand" %>
+        </li>
+        <li class="nav-item">
+          <%=link_to "Turmas", turmas_path, class:"navbar-brand mx-3" %>
+        </li>
+        <li class="nav-item">
+          <%=link_to "Tweets", tweets_path, class:"navbar-brand" %>
+        </li>
+      </ul>
+    </div>
+    <ul class= "navbar-nav ">
+        <% if user_signed_in? %>
+        
+        
+    
+
+        <li class="nav-item ps-1 ">
+            <%= link_to"Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger"%>  
+        </li>
+      <% else %>
+        <li class="nav-item ps-1">
+            <%= link_to"Login", new_user_session_path, class: "btn btn-info"%>  
+        </li>
+        <li class="nav-item ps-1">
+        <%= link_to "Register   ",new_user_registration_path, class: "btn btn-success"%>
+        </li>
+        <% end %>
+      </ul>  
+      
+  </div>
+</nav>          
+      </header>
+      
+      
+      <% flash.each do |name, message| %>
+      <%= content_tag(:div, message, class: "alert alert-info #{name}")%>
+      <% end %>
+
+      
+      
+    
+    
+    <%= yield %>
+      
+    
+      
+    <div class="d-flex align-items-end" style="height:100vh ">
+    <%= link_to "Copyright - Todos os direitos reservados para a empresaTanana LTDA" , "https://portal.supergeeks.school/"%>
+    </div>
+    </div>
+    
+      
+  </body>
+    
+</html>

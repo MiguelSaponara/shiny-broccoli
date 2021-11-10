@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tweets</h1>
+
+<div class="row">
+<div class="col-4">
+<div class="card" style="width: 18rem;">
+  <%= image_tag current_user.gravatar_url, :class => "gravatar" %>
+  <div class="card-body">
+    <h5 class="card-title"><%= current_user.username%></h5>
+    <p class="card-text"><%= current_user.email%></p>
+    <a href="#" class="btn btn-primary">Visit Profile</a>
+  </div>
+</div>
+</div>
+</div>
+<div class="col-8">
+    <div class="card" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+            <%= link_to 'New tweet', new_tweet_path, class:"btn btn-danger" %>
+            
+            <% @tweets.order(id: :desc).each do |tweet| %>
+            <%= link_to tweet, class:"list-group-item list-group-item-action" do %>
+            <h5 class="card-title"> <%= tweet.user.email %> </h5>
+            <p class="card-text"> <%tweet.conteudo%> </p>
+            <p class="card-text"> <%= tweet.created_at.strftime("%d/%m/%Y - %R") %> </p>
+        </ul>
+    </div>
+</div>
+
+<% end %>
+
+
+
+    
+
+
+            
+
+
+<% end %>
+
+
